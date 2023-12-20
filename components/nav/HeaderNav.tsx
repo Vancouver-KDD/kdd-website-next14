@@ -5,14 +5,14 @@ import kddLogoColor from '@/assets/logo/logo_kr_color_horizontal.png'
 
 const HeaderNav = () => {
   return (
-    <div className="z-30 m-auto max-w-4xl flex items-center flex-col-reverse sm:flex-row justify-between p-4 pt-10">
+    <div className="relative z-50 m-auto max-w-4xl flex items-center flex-col-reverse sm:flex-row justify-between p-4 pt-10">
       <Link href="/">
         <div className="w-36">
-          <Image src={kddLogoColor} alt="kdd_logo" width={144} height={36} />
+          <Image src={kddLogoWhite} alt="kdd_logo" width={144} height={36} />
         </div>
       </Link>
-      <div className="flex gap-6 font-bold text-black">
-        <Link href="/about">
+      <div className="flex gap-6 font-bold text-lg text-white">
+        <Link href="/aboutUs">
           <div>About Us</div>
         </Link>
         <Link href="/blogs">

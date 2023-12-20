@@ -9,12 +9,12 @@ type Props = {}
 const MainHero = (props: Props) => {
 
   return (
-      <div className="flex flex-col items-center gap-10 text-center text-white px-4">
+      <div className="relative flex flex-col items-center gap-10 text-center text-white px-4 z-100">
         <div className='flex flex-col gap-8'>
-            <h1 className="text-4xl md:text-5xl font-bold text-shadow-lg text-transparent sm:text-inherit">
+            <h1 className="text-4xl md:text-6xl font-bold text-shadow-lg text-transparent sm:text-inherit">
             Vancouver KDD
             </h1>
-            <h2 className="text-lg md:text-xl">
+            <h2 className="text-lg md:text-xl font-semibold">
             저희는 밴쿠버 한인 개발자 디자이너로 이루어져 있으며 네트워킹 및 한인 사회에 기여를 추구하는
             모임 입니다.
             </h2>
