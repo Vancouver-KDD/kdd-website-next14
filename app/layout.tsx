@@ -1,6 +1,7 @@
 import type {Metadata} from 'next'
 import HeaderNav from '@/components/nav/HeaderNav'
 import './globals.css'
+import {SpeedInsights} from '@vercel/speed-insights/next'
 
 export const metadata: Metadata = {
   title: 'Vancouver KDD | 밴쿠버 KDD | 한인 개발자 디자이너 모임',
@@ -14,6 +15,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
       <body>
         <HeaderNav />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   )
