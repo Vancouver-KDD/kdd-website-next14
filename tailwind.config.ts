@@ -1,4 +1,6 @@
-import type { Config } from 'tailwindcss'
+import type {Config} from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
+import colors from 'tailwindcss/colors'
 
 const config: Config = {
   content: [
@@ -9,6 +11,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        gray: colors.neutral,
         radicalRed: {
           50: '#ffe6eb',
           100: '#ffccd8',
@@ -44,6 +47,37 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({addBase, addComponents, matchUtilities, theme}) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        {values: theme('textShadow')}
+      )
+      addBase({
+        '.flex-col': {
+          display: 'flex',
+        },
+        '.flex-row': {
+          display: 'flex',
+        },
+        '.debug': {
+          'outline-width': '2px',
+          'outline-color': 'pink',
+          'outline-style': 'dashed',
+        },
+      })
+      addComponents({
+        '.flex-center': {
+          display: 'flex',
+          'align-items': 'center',
+          'justify-content': 'center',
+        },
+      })
+    }),
+  ],
 }
 export default config

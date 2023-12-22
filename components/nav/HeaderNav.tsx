@@ -11,7 +11,7 @@ export default function HeaderNav() {
   const isHome = pageUrl === '/'
 
   return (
-    <div className="relative z-50 m-auto max-w-4xl md:max-w-5xl flex items-center flex-col-reverse sm:flex-row justify-between p-4 pt-10">
+    <div className="relative z-50 m-auto max-w-4xl flex items-center flex-col-reverse gap-8 sm:flex-row justify-between p-4 pt-10">
       <Link href="/">
         <div className="w-36">
           <Image
@@ -24,7 +24,7 @@ export default function HeaderNav() {
       </Link>
       <div
         className={classNames(
-          'flex gap-6 font-bold text-lg',
+          'flex gap-6 font-bold text-md sm:text-lg',
           isHome ? 'text-white' : 'text-black'
         )}>
         <Link href="/aboutUs">
