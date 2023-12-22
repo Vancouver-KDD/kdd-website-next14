@@ -3,8 +3,7 @@ import HeaderNav from '@/components/nav/HeaderNav'
 import './globals.css'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {CSPostHogProvider} from './providers'
-import * as stylex from '@stylexjs/stylex'
-
+import KofiWidgetOverlay from '@/components/KofiWidgetOverlay'
 export const metadata: Metadata = {
   title: 'Vancouver KDD | 밴쿠버 KDD | 한인 개발자 디자이너 모임',
   description:
@@ -13,27 +12,17 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html {...stylex.props(styles.html, styles.reset)} lang="kr">
+    <html lang="kr">
       <CSPostHogProvider>
-        <body {...stylex.props(styles.reset)}>
+        <body>
           <div className="absolute inset-x-0">
             <HeaderNav />
           </div>
           {children}
           <SpeedInsights />
+          <KofiWidgetOverlay />
         </body>
       </CSPostHogProvider>
     </html>
   )
 }
-
-const styles = stylex.create({
-  html: {
-    colorScheme: 'light dark',
-  },
-  reset: {
-    minHeight: '100%',
-    margin: 0,
-    padding: 0,
-  },
-})
