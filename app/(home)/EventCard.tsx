@@ -1,7 +1,7 @@
 import {DateTime} from 'luxon'
 import Marked from '@/app/Marked'
 import {getEventAnalytics} from '@/app/actions/firebase-action'
-import Button from '@/components/button/Button'
+import Button from '@/components/Button'
 import Image from 'next/image'
 
 let dialog: HTMLDialogElement

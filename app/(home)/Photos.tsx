@@ -1,13 +1,14 @@
 import type {Attachment} from 'airtable'
 import Image from 'next/image'
+import {getPhotos} from '../actions/airtable'
 
-export let dbPhotos: DB.Photo[]
 // let dialog: HTMLDialogElement
 // let selectedPhotoAttachment: null | Attachment = null
 // $: selectedPhotoAttachment ? dialog?.showModal() : dialog?.close()
 
-export default async function Photos({dbPhotos}: {dbPhotos: DB.Photo[]}) {
-  return dbPhotos.map(({title, description, photos, id}) => {
+export default async function Photos() {
+  const photos = await getPhotos({limit: 20})
+  return photos.map(({title, description, photos, id}) => {
     return (
       photos &&
       photos.length > 0 &&
