@@ -1,10 +1,19 @@
-import MainHero from '@/components/hero/MainHero'
 import Image from 'next/image'
+import {getLatestEvents, getStats, getSponsors, getPhotos} from '@/app/actions/airtable'
+import classNames from 'classnames'
+
 import heroBgImage from './hero-bg-2023-07.jpg'
 import ellipsis from './ellipse.92fef65f.svg'
-import {getLatestEvents, getStats, getSponsors, getPhotos} from '@/app/actions/airtable'
-
+import MainHero from './MainHero'
+import EventCard from './EventCard'
+import Photos from './Photos'
 export default async function Home() {
+  const latestEvent = (await getLatestEvents({limit: 1})).at(0)
+  const isPastEvent = latestEvent
+    ? DateTime.fromISO(latestEvent.date).diffNow().toMillis() < 0
+    : true
+  const photos = await getPhotos({limit: 20})
+
   return (
     <>
       <main className="h-screen min-h-[650px] flex items-center justify-center">
@@ -24,6 +33,43 @@ export default async function Home() {
       </Section>
       <Section title="Sponsors" className="bg-gray-100 p-6">
         <Sponsors />
+      </Section>
+
+      <Section title={isPastEvent ? 'Past Event' : 'Upcoming Event'}>
+        {latestEvent && <EventCard event={latestEvent} />}
+      </Section>
+
+      <Section title={'Photos'}>
+        <div className="flex w-full overflow-x-auto gap-4 text-center">
+          <Photos dbPhotos={photos} />
+        </div>
+      </Section>
+
+      <Section title="Subscribe to KDD">
+        <div className="flex justify-center items-center h-72 md:h-auto">
+          <Script type="text/javascript" src="https://campaigns.zoho.com/js/zc.iframe.js"></Script>
+          <iframe
+            title="KDD Subscription Form"
+            frameBorder="0"
+            id="iframewin"
+            width="100%"
+            height="100%"
+            src="https://zcsub-cmpzourl.maillist-manage.com/ua/Optin?od=11287ecc59340d&zx=130eee8c7&tD=1fc927abddb173c1&sD=1fc927abddb177ad"
+          />
+        </div>
+      </Section>
+      <Section title="Contact Us" className="text-center">
+        <div className="flex flex-center text-center flex-col gap-4">
+          <a className="text-2xl font-bold" href="mailto:marketing@vancouverkdd.com">
+            marketing@vancouverkdd.com
+          </a>
+          <a className="text-2xl font-bold" href="mailto:partner@vancouverkdd.com">
+            partner@vancouverkdd.com
+          </a>
+          <a className="text-2xl font-bold" href="mailto:subgroup@vancouverkdd.com">
+            subgroup@vancouverkdd.com
+          </a>
+        </div>
       </Section>
     </>
   )
@@ -52,7 +98,8 @@ function Section({title, className, children, ...restProps}: SectionProps) {
 
 import largeStatImg from './stat-large.png'
 import smallStatImg from './stat-small.jpeg'
-import classNames from 'classnames'
+import {DateTime} from 'luxon'
+import Script from 'next/script'
 
 async function Stats() {
   const stats = await getStats()
@@ -75,13 +122,9 @@ async function Sponsors() {
     <div className="flex-center sm:flex-row gap-8 [&>a]:w-60">
       {sponsors.map((sponsor) => (
         <a key={sponsor.name} href={sponsor.link} target="_blank">
-          <Image
-            className="w-full"
-            src={sponsor.logo?.url}
-            width="500"
-            height="134"
-            alt={sponsor.name}
-          />
+          <div className="relative w-full min-h-20">
+            <Image src={sponsor.logo?.url} fill alt={sponsor.name} className="object-contain" />
+          </div>
         </a>
       ))}
     </div>

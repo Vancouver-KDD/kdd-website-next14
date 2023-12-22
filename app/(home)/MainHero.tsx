@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import CustomButton from '../button/CustomButton'
+import Button from '../../components/button/Button'
 import naverCafe from '@/assets/icons/navercafe.png'
 import {FaSlack, FaLinkedinIn} from 'react-icons/fa'
 
@@ -19,30 +19,30 @@ const MainHero = (props: Props) => {
         </h2>
       </div>
       <div className="flex justify-center gap-4 flex-col sm:flex-row">
-        <CustomButton
+        <Button
           className="flex items-center gap-2"
           href="https://cafe.naver.com/vancouverkdd"
           size="md"
           target="_blank">
           <Image src={naverCafe} alt="naver-cafe" height="24" width="24" />
           <p>NAVER CAFE</p>
-        </CustomButton>
-        <CustomButton
+        </Button>
+        <Button
           className="flex items-center gap-2"
           href="https://join.slack.com/t/vancouverkdd/shared_invite/zt-1xyhcghtg-OIgE_8OO_SmBMpyOPuH5Ew"
           size="md"
           target="_blank">
           <FaSlack />
           <p>JOIN SLACK</p>
-        </CustomButton>
-        <CustomButton
+        </Button>
+        <Button
           className="flex items-center gap-2"
           href="https://www.linkedin.com/company/vancouver-kdd"
           size="md"
           target="_blank">
           <FaLinkedinIn className="h-5" />
           <p>LINKEDIN</p>
-        </CustomButton>
+        </Button>
       </div>
     </div>
   )

@@ -1,19 +1,20 @@
-import React, {ReactNode} from 'react'
+import React, {AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode} from 'react'
+// import {HTMLAnchorAttributes, HTMLButtonAttributes} from 'svelte/elements'
 
-interface CustomButtonProps {
+type Props = {
   href?: string
   disabled?: boolean
   size?: 'sm' | 'md' | 'lg' | 'xl'
   bg?: string
   hoverBg?: string
   loading?: boolean
-  onClick?: () => void
+  // onClick?: () => void
   className?: string
   target?: string
   children?: ReactNode
-}
+} & (ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement>)
 
-const CustomButton: React.FC<CustomButtonProps> = ({
+export default function Button({
   href,
   disabled,
   size,
@@ -25,8 +26,8 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   target,
   children,
   ...restProps
-}) => {
-  const Element = href && !disabled ? 'a' : 'button'
+}: Props) {
+  const Element = href ? 'a' : 'button'
 
   return (
     <Element
@@ -79,5 +80,3 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     </Element>
   )
 }
-
-export default CustomButton

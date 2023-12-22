@@ -1,5 +1,5 @@
 import type {Metadata} from 'next'
-import HeaderNav from '@/components/nav/HeaderNav'
+import HeaderNav from './HeaderNav'
 import './globals.css'
 import {SpeedInsights} from '@vercel/speed-insights/next'
 import {CSPostHogProvider} from './providers'
