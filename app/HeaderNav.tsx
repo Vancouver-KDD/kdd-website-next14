@@ -27,7 +27,7 @@ export default function HeaderNav() {
           'flex gap-6 font-bold text-md sm:text-lg',
           isHome ? 'text-white' : 'text-black'
         )}>
-        <Link href="/aboutUs">
+        <Link href="/about">
           <div>About Us</div>
         </Link>
         <Link href="/blogs">

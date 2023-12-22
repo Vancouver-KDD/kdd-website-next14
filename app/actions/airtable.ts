@@ -168,6 +168,7 @@ export const getOrganizers = async () => {
     const socialMediaLink2 = record.fields.socialMediaLink2 as string
 
     return {
+      id: record.id,
       name,
       title,
       profile,

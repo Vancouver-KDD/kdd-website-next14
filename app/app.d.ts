@@ -75,6 +75,7 @@ declare namespace DB {
   }
 
   interface Organizer {
+    id: string
     name: string
     title: string
     profile: Attachment

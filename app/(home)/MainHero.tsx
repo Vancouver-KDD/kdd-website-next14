@@ -15,6 +15,7 @@ export default function MainHero() {
           alt="Hero Background"
           fill
           className="object-cover object-center bg-center"
+          draggable={false}
         />
         <Image src={ellipsis} alt="ellipsis" className="absolute inset-x-0 bottom-0 w-full" />
       </div>
