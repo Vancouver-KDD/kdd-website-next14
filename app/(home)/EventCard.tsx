@@ -1,8 +1,8 @@
 import {DateTime} from 'luxon'
-import Marked from '@/app/Marked'
 import {getEventAnalytics} from '@/app/actions/firebase-action'
 import Button from '@/components/Button'
 import Image from 'next/image'
+import {MDXRemote} from 'next-mdx-remote/rsc'
 
 let dialog: HTMLDialogElement
 let scrollToTopAnchor: HTMLDivElement
@@ -40,9 +40,9 @@ export default async function EventCard({event}: Props) {
               <p className="text-sm font-medium">{event.location ?? ''}</p>
             </div>
             <h3 className="text-2xl font-bold line-clamp-1 -mt-1">{event.title ?? ''}</h3>
-            <p
-              className="line-clamp-6-safari text-sm"
-              dangerouslySetInnerHTML={{__html: Marked.parse(event.description ?? '')}}></p>
+            <div className="line-clamp-6">
+              <MDXRemote source={event.description ?? ''} />
+            </div>
             {event.id && (
               <Button
                 // onClick={(e) => e.stopPropagation()}
