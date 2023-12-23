@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import { getLatestBlogs } from '@/app/actions/airtable'
 import { Section } from '@/components'
+import BlogCard from './BlogCard'
+import Grid from '@mui/material/Grid';
 
 const Route = () => {
   const [blogs, setBlogs] = useState<DB.Blog[]>([])
@@ -14,21 +16,14 @@ const Route = () => {
     fetchBlogs()
   }, [])
 
-  console.log('브ㄹ로그', blogs)
-
   return (
-    <div className="max-w-4xl md:max-w-5xl flex flex-col justify-center items-center gap-8 m-auto p-4 pt-56">
-      <Section title="Blogs" className="text-center">
-        {blogs.map((blog) => (
-            <div className="">
-            <p className=" text-gray-800 text-xl font-bold">
-              {blog.title ?? ''}
-            </p>
-            <p className="line-clamp-4 text-gray-500 text-base my-2">
-              {blog.description ?? ''}
-            </p>
-            </div>
-        ))}
+    <div className="max-w-4xl md:max-w-6xl flex flex-col justify-center items-center gap-8 m-auto p-4 pt-48 md:pt-32">
+      <Section title="Blogs" >
+          {blogs.map((blog, index) => (
+            <Grid container className="mb-5">
+                <BlogCard blog={blog} index={index} />
+            </Grid>
+          ))}
       </Section>
     </div>
   )

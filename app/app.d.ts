@@ -48,9 +48,10 @@ declare namespace DB {
     id: string
     author: {id: string; email: string; name: string} | void
     date: string
-    description: string | void
+    description: string 
     published: boolean
-    title: string | void
+    title: string 
+    url: string
   }
 
   interface Event {
