@@ -27,7 +27,7 @@ export default async function EventCard({event}: Props) {
       // }}
       >
         <div className="w-full rounded-md overflow-clip grid max-md:grid-cols-1 md:grid-cols-2 group">
-          <div className="h-full md:max-h-72 overflow-hidden">
+          <div className="h-full md:max-h-80 overflow-hidden">
             <div className="relative h-full w-full object-cover group-hover:scale-110 transition-transform duration-500">
               <Image fill src={event.poster?.url} alt="event poster" />
             </div>
@@ -40,12 +40,13 @@ export default async function EventCard({event}: Props) {
               <p className="text-sm font-medium">{event.location ?? ''}</p>
             </div>
             <h3 className="text-2xl font-bold line-clamp-1 -mt-1">{event.title ?? ''}</h3>
-            <div className="line-clamp-6">
+            <div className="line-clamp-6 text-base">
               <MDXRemote source={event.description ?? ''} />
             </div>
             {event.id && (
               <Button
                 // onClick={(e) => e.stopPropagation()}
+                size='md'
                 disabled={
                   isPastEvent ||
                   eventAnalytics === undefined ||

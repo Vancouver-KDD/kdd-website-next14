@@ -15,7 +15,7 @@ export default function Home() {
         <Section>
           <Stats />
         </Section>
-        <Section title="Sponsors" className="bg-gray-100 p-6">
+        <Section title="Sponsors" className="bg-gray-100">
           <Sponsors />
         </Section>
 
