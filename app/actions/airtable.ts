@@ -18,7 +18,7 @@ export const getLatestBlogs = async ({limit}: {limit: number}) => {
   return records.map((record) => {
     const {
       id,
-      fields: {author, date, description, title, published},
+      fields: {author, date, description, title, url, published},
     } = record
     return {
       id,
@@ -27,6 +27,7 @@ export const getLatestBlogs = async ({limit}: {limit: number}) => {
       description,
       published,
       title,
+      url,
     }
   }) as DB.Blog[]
 }
