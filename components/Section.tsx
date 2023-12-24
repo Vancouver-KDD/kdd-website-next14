@@ -7,8 +7,8 @@ type SectionProps = {
 }
 export default function Section({title, className, children, ...restProps}: SectionProps) {
   return (
-    <section className={clsx('flex-center p-8', className)} {...restProps}>
-      <div className="w-[calc(100vw-2rem)] max-w-4xl">
+    <section className={clsx('flex-center py-8', className)} {...restProps}>
+      <div className="w-[calc(100vw-2rem)] max-w-5xl">
         {title && (
           <div className="flex-col flex-center gap-4 mb-6">
             <h2 className="text-2xl md:text-3xl font-bold text-center">{title}</h2>

@@ -43,7 +43,7 @@ async function Photos() {
       layout="rows"
       photos={albumPhotos}
       renderPhoto={NextJsImage}
-      defaultContainerWidth={1200}
+      defaultContainerWidth={1024}
       sizes={{size: 'calc(100vw - 240px)'}}
     />
   )
