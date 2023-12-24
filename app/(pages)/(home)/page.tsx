@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <MainHero />
-      <Suspense>
+      <Suspense fallback="loading...">
         <Section>
           <Stats />
         </Section>

@@ -1,4 +1,4 @@
-import {getLatestEvents} from '@/app/actions/airtable'
+import {getLatestEvents} from '@/actions/airtable'
 import {Section} from '@/components'
 import EventCard from './EventCard'
 import {DateTime} from 'luxon'

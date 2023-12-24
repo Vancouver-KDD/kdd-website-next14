@@ -1,4 +1,4 @@
-import classNames from 'classnames'
+import clsx from 'clsx'
 
 type SectionProps = {
   title?: string
@@ -7,7 +7,7 @@ type SectionProps = {
 }
 export default function Section({title, className, children, ...restProps}: SectionProps) {
   return (
-    <section className={classNames('flex-center p-8', className)} {...restProps}>
+    <section className={clsx('flex-center p-8', className)} {...restProps}>
       <div className="w-[calc(100vw-2rem)] max-w-4xl">
         {title && (
           <div className="flex-col flex-center gap-4 mb-6">

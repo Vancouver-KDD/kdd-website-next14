@@ -1,5 +1,5 @@
 import {DateTime} from 'luxon'
-import {getEventAnalytics} from '@/app/actions/firebase-action'
+import {getEventAnalytics} from '@/actions/firebase-action'
 import Button from '@/components/Button'
 import Image from 'next/image'
 import {MDXRemote} from 'next-mdx-remote/rsc'
@@ -46,7 +46,7 @@ export default async function EventCard({event}: Props) {
             {event.id && (
               <Button
                 // onClick={(e) => e.stopPropagation()}
-                size='md'
+                size="md"
                 disabled={
                   isPastEvent ||
                   eventAnalytics === undefined ||

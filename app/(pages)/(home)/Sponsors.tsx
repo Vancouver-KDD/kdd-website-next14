@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import {getSponsors} from '@/app/actions/airtable'
+import {getSponsors} from '@/actions/airtable'
 
 export default async function Sponsors() {
   const sponsors = await getSponsors()

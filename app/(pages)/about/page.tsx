@@ -2,6 +2,11 @@ import React, {Suspense} from 'react'
 import aboutUs0 from './about-us-0.jpg'
 import Image from 'next/image'
 import {OrganizersSection} from './OrganizersSection'
+import type {Metadata} from 'next'
+
+export const metadata: Metadata = {
+  title: 'About 소개',
+}
 
 export default function AboutPage() {
   return (

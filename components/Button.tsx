@@ -1,30 +1,28 @@
 import React, {AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode} from 'react'
-// import {HTMLAnchorAttributes, HTMLButtonAttributes} from 'svelte/elements'
 
 type Props = {
-  href?: string
-  disabled?: boolean
-  size?: 'sm' | 'md' | 'lg' | 'xl'
   bg?: string
-  hoverBg?: string
-  loading?: boolean
-  // onClick?: () => void
-  className?: string
-  target?: string
   children?: ReactNode
+  className?: string
+  disabled?: boolean
+  hoverBg?: string
+  href?: string
+  loading?: boolean
+  size?: 'sm' | 'md' | 'lg' | 'xl'
+  target?: string
 } & (ButtonHTMLAttributes<HTMLButtonElement> & AnchorHTMLAttributes<HTMLAnchorElement>)
 
 export default function Button({
-  href,
-  disabled,
-  size,
   bg,
+  children,
+  className,
+  disabled,
   hoverBg,
+  href,
   loading,
   onClick,
-  className,
+  size,
   target,
-  children,
   ...restProps
 }: Props) {
   const Element = href ? 'a' : 'button'

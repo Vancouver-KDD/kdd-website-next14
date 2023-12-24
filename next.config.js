@@ -3,9 +3,7 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'v5.airtableusercontent.com',
-        //   port: '',
-        //   pathname: '/account123/**',
+        hostname: '*.airtableusercontent.com',
       },
     ],
   },

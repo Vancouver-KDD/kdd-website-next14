@@ -2,9 +2,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import {usePathname} from 'next/navigation'
-import kddLogoWhite from '@/assets/logo/logo_kr_white_horizontal.svg'
-import kddLogoColor from '@/assets/logo/logo_kr_color_horizontal.png'
-import classNames from 'classnames'
+import kddLogoWhite from './logo_kr_white_horizontal.svg'
+import kddLogoColor from './logo_kr_color_horizontal.png'
+import clsx from 'clsx'
 
 export default function HeaderNav() {
   const pageUrl = usePathname()
@@ -23,7 +23,7 @@ export default function HeaderNav() {
         </div>
       </Link>
       <div
-        className={classNames(
+        className={clsx(
           'flex gap-6 font-bold text-md sm:text-lg',
           isHome ? 'text-white' : 'text-black'
         )}>

@@ -1,6 +1,6 @@
 import type {Attachment} from 'airtable'
 import Image from 'next/image'
-import {getPhotos} from '../actions/airtable'
+import {getPhotos} from '@/actions/airtable'
 
 // let dialog: HTMLDialogElement
 // let selectedPhotoAttachment: null | Attachment = null

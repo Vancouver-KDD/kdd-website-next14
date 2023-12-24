@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import {getOrganizers} from '@/app/actions/airtable'
+import {getOrganizers} from '@/actions/airtable'
 import {SocialMediaIcon} from './SocialMediaIcon'
 
 export async function OrganizersSection() {

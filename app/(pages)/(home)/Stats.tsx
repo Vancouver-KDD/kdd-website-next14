@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import {getStats} from '@/app/actions/airtable'
+import {getStats} from '@/actions/airtable'
 import largeStatImg from './stat-large.png'
 import smallStatImg from './stat-small.jpeg'
 
