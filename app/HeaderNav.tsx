@@ -2,8 +2,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import {usePathname} from 'next/navigation'
-import kddLogoWhite from '@/assets/logo/logo_kr_white_horizontal.svg'
-import kddLogoColor from '@/assets/logo/logo_kr_color_horizontal.png'
+import kddLogoWhite from './logo_kr_white_horizontal.svg'
+import kddLogoColor from './logo_kr_color_horizontal.png'
 import clsx from 'clsx'
 
 export default function HeaderNav() {

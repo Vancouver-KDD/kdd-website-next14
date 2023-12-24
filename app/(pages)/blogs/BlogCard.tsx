@@ -4,16 +4,7 @@ import Button from '@mui/material/Button'
 import {DateTime} from 'luxon'
 import Link from 'next/link'
 
-const BlogCard = ({blog, index}: {blog: DB.Blog; index: number}) => {
-  function stringToTime(text: string | void) {
-    if (!text) {
-      return 0
-    }
-    const words = text.length / 5.7 // 4.7 avg characters per word + space
-    const minutes = words / 120 // 120 average words per minute
-    return Math.ceil(minutes)
-  }
-
+export default function BlogCard({blog, index}: {blog: DB.Blog; index: number}) {
   const formattedDescription = blog.description
     .split(/(\d{4}\.\d{2}\.\d{2})/)
     .reduce((acc, line, index) => {
@@ -55,4 +46,11 @@ const BlogCard = ({blog, index}: {blog: DB.Blog; index: number}) => {
   )
 }
 
-export default BlogCard
+function stringToTime(text: string | void) {
+  if (!text) {
+    return 0
+  }
+  const words = text.length / 5.7 // 4.7 avg characters per word + space
+  const minutes = words / 120 // 120 average words per minute
+  return Math.ceil(minutes)
+}
