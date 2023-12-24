@@ -1,3 +1,5 @@
+import {DB} from '@/app'
+
 import {
   collection,
   doc,

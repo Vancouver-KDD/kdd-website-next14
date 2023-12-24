@@ -3,6 +3,7 @@ import {getEventAnalytics} from '@/actions/firebase-action'
 import Button from '@/components/Button'
 import Image from 'next/image'
 import {MDXRemote} from 'next-mdx-remote/rsc'
+import {DB} from '@/app'
 
 let dialog: HTMLDialogElement
 let scrollToTopAnchor: HTMLDivElement
@@ -28,8 +29,13 @@ export default async function EventCard({event}: Props) {
       >
         <div className="w-full rounded-md overflow-clip grid max-md:grid-cols-1 md:grid-cols-2 group">
           <div className="h-full md:max-h-80 overflow-hidden">
-            <div className="relative h-full w-full object-cover group-hover:scale-110 transition-transform duration-500">
-              <Image fill src={event.poster?.url} alt="event poster" />
+            <div className="relative h-full w-full">
+              <Image
+                fill
+                src={event.poster?.url}
+                alt={event.poster?.filename ?? 'event poster'}
+                className="object-cover group-hover:scale-110 transition-transform duration-500"
+              />
             </div>
           </div>
           <div className="h-full flex-col min-h-40 bg-gray-100 px-5 py-4 gap-3">
@@ -45,7 +51,6 @@ export default async function EventCard({event}: Props) {
             </div>
             {event.id && (
               <Button
-                // onClick={(e) => e.stopPropagation()}
                 size="md"
                 disabled={
                   isPastEvent ||

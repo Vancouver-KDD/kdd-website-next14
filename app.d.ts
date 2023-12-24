@@ -1,3 +1,5 @@
+import type {Attachment} from 'airtable'
+
 declare namespace App {
   interface KoFiWebhookData {
     verification_token: string // ex. 'a3d45423-d339-4053-ba7b-4d83b5633d77'

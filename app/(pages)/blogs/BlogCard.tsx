@@ -3,6 +3,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Button from '@mui/material/Button'
 import {DateTime} from 'luxon'
 import Link from 'next/link'
+import {DB} from '@/app'
 
 export default function BlogCard({blog, index}: {blog: DB.Blog; index: number}) {
   const formattedDescription = blog.description

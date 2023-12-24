@@ -1,6 +1,7 @@
 import Airtable from 'airtable'
 Airtable.configure({apiKey: process.env.NEXT_PUBLIC_AIRTABLE_TOKEN})
 import type {Attachment} from 'airtable'
+import {DB} from '@/app'
 
 const DEV = process.env.NODE_ENV === 'development'
 
