@@ -12,13 +12,22 @@ type Props = {
   event: DB.Event
 }
 
+function convertAutolinksToLinks(text: string) {
+  const autolinkRegex = /<https?:\/\/[^\s]+>/g
+  return text.replace(autolinkRegex, (match) => {
+    // Remove the angle brackets
+    const url = match.slice(1, -1)
+    return `[${url}](${url})`
+  })
+}
+
 export default async function EventCard({event}: Props) {
   const isPastEvent = DateTime.fromISO(event.date).diffNow().toMillis() < 0
   const eventAnalytics = await getEventAnalytics(event.id)
   const ticketsLeft =
     event.quantity -
     ((eventAnalytics?.ticketsConfirmedCount ?? 0) + (eventAnalytics?.ticketsOnHoldCount ?? 0))
-
+  // console.log(convertAutolinksToLinks(event.description) ?? '')
   return (
     <>
       <button
@@ -47,7 +56,7 @@ export default async function EventCard({event}: Props) {
             </div>
             <h3 className="text-2xl font-bold line-clamp-1 -mt-1">{event.title ?? ''}</h3>
             <div className="line-clamp-6 text-base">
-              <MDXRemote source={event.description ?? ''} />
+              <MDXRemote source={convertAutolinksToLinks(event.description) ?? ''} />
             </div>
             {event.id && (
               <Button
