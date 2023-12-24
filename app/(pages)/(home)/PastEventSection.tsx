@@ -1,6 +1,5 @@
 import {getLatestEvents} from '@/actions/airtable'
-import {Section} from '@/components'
-import EventCard from './EventCard'
+import {Section, EventCard} from '@/components'
 import {DateTime} from 'luxon'
 
 export default async function PastEventSection() {
