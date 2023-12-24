@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import Button from '../../components/Button'
+import {Button} from '@/components'
 import naverCafe from '@/assets/icons/navercafe.png'
 import {FaSlack, FaLinkedinIn} from 'react-icons/fa'
 import heroBgImage from './hero-bg-2023-07.jpg'

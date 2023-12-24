@@ -1,11 +1,4 @@
-// See https://kit.svelte.dev/docs/types#app
-// for information about these interfaces
-// and what to do when importing types
 declare namespace App {
-  // interface Error {}
-  // interface Locals {}
-  // interface PageData {}
-  // interface Platform {}
   interface KoFiWebhookData {
     verification_token: string // ex. 'a3d45423-d339-4053-ba7b-4d83b5633d77'
     message_id: string // ex. '8e466784-d7d2-4a8c-a654-1cc10b5f739b'
@@ -48,9 +41,9 @@ declare namespace DB {
     id: string
     author: {id: string; email: string; name: string} | void
     date: string
-    description: string 
+    description: string
     published: boolean
-    title: string 
+    title: string
     url: string
   }
 
