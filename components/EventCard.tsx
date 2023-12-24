@@ -14,7 +14,11 @@ type Props = {
 
 function convertAutolinksToLinks(text: string) {
   const autolinkRegex = /<https?:\/\/[^\s]+>/g
-  return text.replace(autolinkRegex, '[$1]($1)')
+  return text.replace(autolinkRegex, (match) => {
+    // Remove the angle brackets
+    const url = match.slice(1, -1)
+    return `[${url}](${url})`
+  })
 }
 
 export default async function EventCard({event}: Props) {
@@ -23,7 +27,7 @@ export default async function EventCard({event}: Props) {
   const ticketsLeft =
     event.quantity -
     ((eventAnalytics?.ticketsConfirmedCount ?? 0) + (eventAnalytics?.ticketsOnHoldCount ?? 0))
-  // console.log(event.description ?? '')
+  // console.log(convertAutolinksToLinks(event.description) ?? '')
   return (
     <>
       <button
