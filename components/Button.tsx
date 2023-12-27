@@ -1,4 +1,6 @@
+import clsx from 'clsx'
 import React, {AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode} from 'react'
+import {twMerge} from 'tailwind-merge'
 
 type Props = {
   bg?: string
@@ -26,13 +28,15 @@ export default function Button({
   ...restProps
 }: Props) {
   const Element = href ? 'a' : 'button'
-
+  clsx('text-white', 'text-red')
   return (
     <Element
       onClick={onClick}
       href={href}
       {...restProps}
-      className={`flex-center rounded px-4 font-medium text-white transition-colors cursor-pointer 
+      className={twMerge(
+        `flex-center rounded px-4 font-medium text-white transition-colors cursor-pointer
+      
             ${
               size === 'sm'
                 ? 'py-2 text-sm'
@@ -52,8 +56,9 @@ export default function Button({
                 : 'bg-radicalRed-500'
             } 
             ${hoverBg ? `hover:bg-[${hoverBg}]` : 'hover:bg-radicalRed-600'} 
-            ${className || ''}
-        `}
+        `,
+        className
+      )}
       target={target || '_self'}>
       {loading && (
         <svg
