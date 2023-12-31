@@ -22,8 +22,6 @@ export default function BlogsPage() {
 
 async function Blogs() {
   const blogs = await getLatestBlogs({ limit: 20 })
-  
-  console.log('블로그',blogs)
 
   return blogs.map((blog, index) => (
     <Grid container className="mb-5" key={blog.id}>
