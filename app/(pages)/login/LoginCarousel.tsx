@@ -5,19 +5,19 @@ import { useState, useEffect } from 'react';
 import { getPhotos } from '@/actions/airtable';
 
 function Photos() {
-  const [recentPhotos, setRecentPhotos] = useState([]);
-
-  useEffect(() => {
-    async function fetchPhotos() {
-      const fetchedPhotos = await getPhotos({ limit: 3 });
-      setRecentPhotos(fetchedPhotos[0].photos);
-    }
-
-    fetchPhotos();
-  }, []);
+    const [recentPhotos, setRecentPhotos] = useState<{ url: string }[]>([]);
+  
+    useEffect(() => {
+      async function fetchPhotos() {
+        const fetchedPhotos = await getPhotos({ limit: 3 });
+        setRecentPhotos(fetchedPhotos[0].photos);
+      }
+  
+      fetchPhotos();
+    }, []);
 
     return (
-        <Carousel autoplay autoplayDelay={2500} loop className="rounded-xl">
+        <Carousel autoplay autoplayDelay={2500} loop className="rounded-xl" placeholder={<div>Loading...</div>}>
             {recentPhotos.map((photo, index) => (
                 <Image key={index} fill src={photo.url} alt={`photo-${index}`} className="w-96" />
             ))}
