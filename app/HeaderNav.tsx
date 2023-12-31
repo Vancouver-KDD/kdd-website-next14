@@ -39,6 +39,9 @@ export default function HeaderNav() {
         <Link href="/photos">
           <div>Photos</div>
         </Link>
+        <Link href="/login">
+          <div>Login</div>
+        </Link>
       </div>
     </div>
   )
