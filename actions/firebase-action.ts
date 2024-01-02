@@ -15,12 +15,12 @@ import { db } from './firebase'
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
 
 export async function createUser(data: Omit<DB.User, 'createdAt'>) {
-  const userRef = doc(db, 'Users', data.id);
 
   // Check if user with given ID already exists
-  if ((await getDoc(userRef)).exists()) {
-    throw new Error('User with given ID already exists');
-  }
+  // const userRef = doc(db, 'Users', data.id);
+  // if ((await getDoc(userRef)).exists()) {
+  //   throw new Error('User with given ID already exists');
+  // }
 
   try {
     const auth = getAuth();
