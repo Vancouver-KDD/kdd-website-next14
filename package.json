@@ -17,6 +17,7 @@
     "airtable": "^0.12.2",
     "clsx": "^2.0.0",
     "firebase": "^10.7.1",
+    "firebase-admin": "^12.0.0",
     "luxon": "^3.4.4",
     "next": "14.0.4",
     "next-mdx-remote": "^4.4.1",
