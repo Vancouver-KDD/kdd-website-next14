@@ -5,6 +5,7 @@ import {SpeedInsights} from '@vercel/speed-insights/next'
 import {CSPostHogProvider} from './providers'
 import KofiWidgetOverlay from '@/components/KofiWidgetOverlay'
 import {Noto_Sans_KR} from 'next/font/google'
+import { Toaster } from "react-hot-toast"
 
 export const metadata: Metadata = {
   title: 'Vancouver KDD | 밴쿠버 KDD | 한인 개발자 디자이너 모임',
@@ -26,6 +27,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <div className="absolute inset-x-0">
             <HeaderNav />
           </div>
+          <Toaster position="bottom-center " />
           {children}
           <SpeedInsights />
           <KofiWidgetOverlay />
