@@ -27,7 +27,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <div className="absolute inset-x-0">
             <HeaderNav />
           </div>
-          <Toaster position="bottom-center " />
+          <Toaster position="top-center" />
           {children}
           <SpeedInsights />
           <KofiWidgetOverlay />
