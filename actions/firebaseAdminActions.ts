@@ -1,6 +1,6 @@
 import type {App, DB} from '@/app'
 import {db} from './firebaseAdmin'
-import {FieldValue} from 'firebase-admin/firestore'
+import { FieldValue } from 'firebase-admin/firestore'
 
 export async function createTicket(data: Omit<DB.Ticket, 'createdAt'>) {
   // 1. Check if data.id (TicketId) does not already exist
@@ -253,18 +253,4 @@ export async function sendEmail(params: EmailParams) {
   } satisfies DB.Email
 
   return db.collection('Email').add(email)
-}
-
-export async function createUser(data: Omit<DB.Ticket, 'createdAt'>) {
-  if ((await db.doc(`Users/${data.id}`).get()).exists) {
-    throw new Error('User with given ID already exists')
-  }
-
-  // Create new user
-  await db.doc(`Users/${data.id}`).set({
-    ...data,
-    createdAt: new Date(),
-  })
-
-  return true
 }

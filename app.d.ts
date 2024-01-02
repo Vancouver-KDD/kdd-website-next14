@@ -120,8 +120,10 @@ declare namespace DB {
   }
 
   interface User {
-    uid: string
-    isAdmin: boolean
+    uid?: string
+    isAdmin?: boolean
+    name: string
     email: string
+    password: string
   }
 }

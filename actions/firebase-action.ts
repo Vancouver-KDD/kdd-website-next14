@@ -1,5 +1,4 @@
 import {DB} from '@/app'
-
 import {
   collection,
   doc,
@@ -10,8 +9,37 @@ import {
   Query,
   getDoc,
   getDocs,
+  setDoc,
 } from 'firebase/firestore'
-import {db} from './firebase'
+import { db } from './firebase'
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
+
+export async function createUser(data: Omit<DB.User, 'createdAt'>) {
+  const userRef = doc(db, 'Users', data.id);
+
+  // Check if user with given ID already exists
+  if ((await getDoc(userRef)).exists()) {
+    throw new Error('User with given ID already exists');
+  }
+
+  try {
+    const auth = getAuth();
+
+    // Create new user using Firebase authentication
+    await createUserWithEmailAndPassword(auth, data.email, data.password);
+
+    // Set user data in Firestore
+    await setDoc(userRef, {
+      ...data,
+      createdAt: new Date(),
+    });
+
+    return true;
+  } catch (error) {
+    console.error('Error creating user:', error);
+    throw error;
+  }
+}
 
 export async function fetchTickets(): Promise<DB.Ticket[]> {
   try {
@@ -130,3 +158,4 @@ export async function getEventAnalytics(eventId: string): Promise<DB.EventAnalyt
   const snapshot = await getDoc(doc(db, `EventsAnalytics/${eventId}`))
   return snapshot.data() as DB.EventAnalytics
 }
+
