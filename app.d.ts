@@ -122,8 +122,12 @@ declare namespace DB {
   interface User {
     uid?: string
     isAdmin?: boolean
-    name: string
+    name: {
+      korean: string
+      english: string
+    }
     email: string
     password: string
+    [key: string]: any
   }
 }

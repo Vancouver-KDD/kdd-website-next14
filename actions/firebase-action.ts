@@ -12,25 +12,30 @@ import {
   setDoc,
 } from 'firebase/firestore'
 import { db } from './firebase'
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 export async function createUser(data: Omit<DB.User, 'createdAt'>) {
-
-  // Check if user with given ID already exists
-  // const userRef = doc(db, 'Users', data.id);
-  // if ((await getDoc(userRef)).exists()) {
-  //   throw new Error('User with given ID already exists');
-  // }
-
   try {
     const auth = getAuth();
 
     // Create new user using Firebase authentication
-    await createUserWithEmailAndPassword(auth, data.email, data.password);
+    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
 
-    // Set user data in Firestore
+    const uid = userCredential.user.uid;
+
+    const userRef = doc(db, 'Users', uid);
+
+    // Check if user with given ID already exists
+    if ((await getDoc(userRef)).exists()) {
+      throw new Error('User with given ID already exists');
+    }
+
+    // Set user data in Firestore(remove password & add id)
+    const { password, ...dataWithoutPassword } = data;
+
     await setDoc(userRef, {
-      ...data,
+      ...dataWithoutPassword,
+      id: uid,
       createdAt: new Date(),
     });
 
