@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import {usePathname} from 'next/navigation'
+import { firebaseAuth } from '@/actions/firebase'
 import kddLogoWhite from './logo_kr_white_horizontal.svg'
 import kddLogoColor from './logo_kr_color_horizontal.png'
 import clsx from 'clsx'
@@ -9,6 +10,9 @@ import clsx from 'clsx'
 export default function HeaderNav() {
   const pageUrl = usePathname()
   const isHome = pageUrl === '/'
+
+  const currentUser = firebaseAuth.currentUser;
+  console.log('user', currentUser)
 
   return (
     <div className="relative z-50 m-auto max-w-4xl flex items-center flex-col-reverse gap-8 sm:flex-row justify-between p-4 pt-10">
@@ -39,9 +43,21 @@ export default function HeaderNav() {
         <Link href="/photos">
           <div>Photos</div>
         </Link>
-        <Link href="/login">
-          <div>Login</div>
-        </Link>
+        {currentUser &&
+          <Link href="/myPage">
+            <div>My Page</div>
+          </Link>
+        }
+        {currentUser 
+          ?
+          <Link href="/">
+            <div>Logout</div>
+          </Link>
+          :
+          <Link href="/login">
+            <div>Login</div>
+          </Link>
+        }
       </div>
     </div>
   )

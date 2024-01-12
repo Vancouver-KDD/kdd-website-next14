@@ -1,11 +1,12 @@
 'use client'
 import React, { useState } from 'react';
 import { Button } from '@/components';
-import { FaGoogle } from "react-icons/fa";
+import Link from 'next/link'
 import TextField from '@mui/material/TextField';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import { FaArrowUp } from "react-icons/fa";
 import LoginCarousel from './LoginCarousel';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { firebaseAuth } from '@/actions/firebase';
@@ -74,20 +75,21 @@ export default function LoginPage() {
                                     size="md"
                                     onClick={login}
                                 >
-                                    Login
+                                    로그인
                                 </Button>
                             </Grid>
                         </Grid>
-                        <Button
-                            className="flex items-center gap-2 mt-3 w-full"
-                            size="md"
-                        >
-                            <FaGoogle />
-                            <p>Login with a Google</p>
-                        </Button>
+                        <Link href="/login/register">
+                            <Button
+                                className="flex items-center gap-2 mt-3 w-full"
+                                size="md"
+                            >
+                                <p>회원가입</p>
+                            </Button>
+                        </Link>
                         <div className="flex-center gap-2 mt-5">
-                            <p className="text-center">아직 계정이 없으신가요?</p>
-                            <a href="/login/register" className="text-center text-royalBlue-500">회원가입</a>
+                            <p className="text-center">아직 계정이 없으시면 회원가입을 눌러주세요</p>
+                            <FaArrowUp className="text-[#F52763]" />
                         </div>
                     </CardContent>
                 </Grid>
