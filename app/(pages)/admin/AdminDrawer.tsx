@@ -1,5 +1,7 @@
 'use client'
 import * as React from 'react';
+import { getLatestEvents, getEvent } from '@/actions/airtable'
+import { DB } from '@/app'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -40,23 +42,37 @@ export default function AdminDrawer(props: Props) {
     }
   };
 
+  async function LatestEventsTitle() {
+    const events = await getLatestEvents({ limit: 10 })
+    const latestEvents: DB.Event[] = []
+
+    for (const event of events) {
+        latestEvents.push(event)
+    }
+
+    console.log('최근이벤트', latestEvents)
+
+      return (
+        latestEvents.map((event, index) => (
+          <ListItem key={index} disablePadding>
+            <ListItemButton>
+              <ListItemText primary={event.title} />
+            </ListItemButton>
+          </ListItem>
+        ))
+      )
+  }
+  
   const drawer = (
     <div>
       <Toolbar />
       <h3 className="px-4 py-2 mt-4 font-bold text-xl">KDD Admin Dashboard</h3>
       <List>
-        {['Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <LatestEventsTitle />
       </List>
     </div>
   );
 
-  // Remove this const when copying and pasting into your project.
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
