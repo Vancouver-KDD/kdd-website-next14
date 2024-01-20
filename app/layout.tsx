@@ -5,7 +5,7 @@ import {SpeedInsights} from '@vercel/speed-insights/next'
 import {CSPostHogProvider} from './providers'
 import KofiWidgetOverlay from '@/components/KofiWidgetOverlay'
 import {Noto_Sans_KR} from 'next/font/google'
-import { Toaster } from 'react-hot-toast'
+import {Toaster} from 'react-hot-toast'
 
 export const metadata: Metadata = {
   title: 'Vancouver KDD | 밴쿠버 KDD | 한인 개발자 디자이너 모임',
@@ -18,6 +18,10 @@ const notoSansKR = Noto_Sans_KR({
   display: 'auto',
   subsets: ['latin'],
 })
+
+// React fetch requests are automatically memoized (on the server) by default.
+// Revalidate all fetch requests every 2 minutes so airtable data is at most outdated by 2 mins.
+export const revalidate = 120
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
