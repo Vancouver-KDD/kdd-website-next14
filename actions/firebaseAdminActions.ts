@@ -1,6 +1,16 @@
 import type {App, DB} from '@/app'
-import {db} from './firebaseAdmin'
-import { FieldValue } from 'firebase-admin/firestore'
+import {auth, db} from './firebaseAdmin'
+import {FieldValue} from 'firebase-admin/firestore'
+
+export async function serverActionExampleRegisterTicket(token: string, ticketData: DB.Ticket) {
+  const decode = await auth.verifyIdToken(token, true).catch((error) => {
+    console.error(error)
+    throw error
+    // User is dissabled or token is invalid
+  })
+  decode.uid
+  // Do something with the uid
+}
 
 export async function createTicket(data: Omit<DB.Ticket, 'createdAt'>) {
   // 1. Check if data.id (TicketId) does not already exist

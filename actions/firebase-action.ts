@@ -11,38 +11,38 @@ import {
   getDocs,
   setDoc,
 } from 'firebase/firestore'
-import { db } from './firebase'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {db} from './firebase'
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 
 export async function createUser(data: Omit<DB.User, 'createdAt'>) {
   try {
-    const auth = getAuth();
+    const auth = getAuth()
 
     // Create new user using Firebase authentication
-    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+    const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password)
 
-    const uid = userCredential.user.uid;
+    const uid = userCredential.user.uid
 
-    const userRef = doc(db, 'Users', uid);
+    const userRef = doc(db, 'Users', uid)
 
     // Check if user with given ID already exists
     if ((await getDoc(userRef)).exists()) {
-      throw new Error('User with given ID already exists');
+      throw new Error('User with given ID already exists')
     }
 
     // Set user data in Firestore(remove password & add id)
-    const { password, ...dataWithoutPassword } = data;
+    const {password, ...dataWithoutPassword} = data
 
     await setDoc(userRef, {
       ...dataWithoutPassword,
       id: uid,
       createdAt: new Date(),
-    });
+    })
 
-    return true;
+    return true
   } catch (error) {
-    console.error('Error creating user:', error);
-    throw error;
+    console.error('Error creating user:', error)
+    throw error
   }
 }
 
@@ -163,4 +163,3 @@ export async function getEventAnalytics(eventId: string): Promise<DB.EventAnalyt
   const snapshot = await getDoc(doc(db, `EventsAnalytics/${eventId}`))
   return snapshot.data() as DB.EventAnalytics
 }
-

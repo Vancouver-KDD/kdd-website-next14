@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
-import { firebaseAuth } from '@/actions/firebase'
+import {firebaseAuth} from '@/actions/firebase'
 import {usePathname} from 'next/navigation'
 import kddLogoWhite from './logo_kr_white_horizontal.svg'
 import kddLogoColor from './logo_kr_color_horizontal.png'
@@ -44,21 +44,20 @@ export default function HeaderNav() {
         <Link href="/photos">
           <div>Photos</div>
         </Link>
-        {currentUser &&
+        {currentUser && (
           <Link href="/myPage">
             <div>My Page</div>
           </Link>
-        }
-        {currentUser 
-          ?
+        )}
+        {currentUser ? (
           <Link href="/">
             <div>Logout</div>
           </Link>
-          :
+        ) : (
           <Link href="/login">
             <div>Login</div>
           </Link>
-        }
+        )}
       </div>
     </div>
   )
