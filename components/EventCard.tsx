@@ -28,6 +28,7 @@ export default async function EventCard({event}: Props) {
     event.quantity -
     ((eventAnalytics?.ticketsConfirmedCount ?? 0) + (eventAnalytics?.ticketsOnHoldCount ?? 0))
   // console.log(convertAutolinksToLinks(event.description) ?? '')
+
   return (
     <>
       <button
