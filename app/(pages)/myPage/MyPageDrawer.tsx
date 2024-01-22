@@ -10,6 +10,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import { authUser, user } from '@/stores'
+import { useAtom, useAtomValue } from 'jotai'
 
 const drawerWidth = 280;
 
@@ -21,6 +23,9 @@ export default function MyPageDrawer(props: Props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+
+  const userVal = useAtomValue(user)
+  const currentUser = userVal;
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -56,12 +61,28 @@ export default function MyPageDrawer(props: Props) {
 //           </ListItem>
 //         ))
 //       )
-//   }
+  //   }
+  
+  const getGreeting = () => {
+    const currentHour = new Date().getHours();
+    if (currentHour < 4) {
+      return "Good Night..😴";
+    } else if (currentHour < 12) {
+      return "Good Morning..🌝";
+    } else if (currentHour < 18) {
+      return "Good Afternoon..🌞";
+    } else if (currentHour < 22) {
+      return "Good Evening..🌗";
+    } else {
+      return "Good Night..🥱";
+    }
+  };
   
   const drawer = (
     <div>
       <Toolbar />
-      <h3 className="px-4 py-2 mt-4 font-bold text-xl">Menu</h3>
+      <h3 className="px-4 font-bold text-sm">{getGreeting()}</h3>
+      <h3 className="px-4 mt-1 font-bold text-xl">{currentUser?.name?.english}</h3>
       <List>
         {/* <LatestEventsTitle /> */}
       </List>

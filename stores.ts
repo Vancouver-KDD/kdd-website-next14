@@ -64,6 +64,7 @@ function getAtomFromQuery<T>(_getQuery: (get: Getter) => Query | null) {
 
 export const authUser = atom<User | null | undefined>(undefined)
 authUser.onMount = (setSelf) => firebaseAuth?.onAuthStateChanged(setSelf)
+
 export const user = getAtomFromDocRef<DB.User>((get) => {
   const uid = get(authUser)?.uid
   return uid ? doc(db, `Users/${uid}`) : null
