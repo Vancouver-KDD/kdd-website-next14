@@ -45,7 +45,7 @@ export default function HeaderNav() {
           <div>Photos</div>
         </Link>
         {currentUser && (
-          <Link href="/myPage">
+          <Link href="/myPage?page=myTickets">
             <div>My Page</div>
           </Link>
         )}
