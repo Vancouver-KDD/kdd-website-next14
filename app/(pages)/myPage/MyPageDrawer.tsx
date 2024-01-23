@@ -10,6 +10,7 @@ import { user } from '@/stores'
 import { useAtomValue } from 'jotai'
 import { useSearchParams } from 'next/navigation'
 import MyTickets from './MyTickets';
+import Settings from './Settings';
 
 const drawerWidth = 280;
 
@@ -60,20 +61,23 @@ export default function MyPageDrawer(props: Props) {
 
   const menus = [
     { name: 'My Tickets', path: '/myPage?page=myTickets' },
+    { name: 'Settings', path: '/myPage?page=settings' },
   ];
   
   const drawer = (
     <div className='mt-9 pl-10'>
       <Suspense fallback="loading...">
         <h3 className="px-4 font-bold text-sm text-[#364656]">{getGreeting()}</h3>
-        <h3 className="px-4 mt-0.5 font-bold text-xl text-[#415263]">{currentUser?.name?.english}</h3>
-        <List className='mt-4'>
-          {menus.map((menu, index) => (
-            <ListItem key={menu.name} component="a" href={menu.path} className='flex-center'>
-              <h1 className='font-semibold text-xl'>{menu.name}</h1>
-            </ListItem>
-          ))}
-        </List>
+        <h3 className="px-4 mt-0.5 font-bold text-lg text-[#415263]">{currentUser?.name?.english}</h3>
+        <div className='w-full flex justify-end'>
+          <List className='mt-3 w-3/4'>
+            {menus.map((menu, index) => (
+              <ListItem key={menu.name} component="a" href={menu.path}>
+                <h1 className='font-semibold text-lg'>{menu.name}</h1>
+              </ListItem>
+            ))}
+          </List>
+        </div>
       </Suspense>
     </div>
   );
@@ -119,7 +123,8 @@ export default function MyPageDrawer(props: Props) {
         component="main"
         sx={{ flexGrow: 1, p: 2, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
-        {page === 'myTickets' && ( <MyTickets /> )}
+        {page === 'myTickets' && (<MyTickets />)}
+        {page === 'settings' && <Settings />}
       </Box>
     </Box>
   );
