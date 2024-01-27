@@ -6,6 +6,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
+import Card from '@mui/material/Card';
+import Switch from '@mui/material/Switch';
 import { user } from '@/stores'
 import { useAtomValue } from 'jotai'
 import { useSearchParams } from 'next/navigation'
@@ -23,11 +25,13 @@ export default function MyPageDrawer(props: Props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
-  const searchParams = useSearchParams()
-  const page = searchParams.get('page')
-
   const userVal = useAtomValue(user)
   const currentUser = userVal;
+
+ 
+
+  const searchParams = useSearchParams()
+  const page = searchParams.get('page')
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -63,23 +67,48 @@ export default function MyPageDrawer(props: Props) {
     { name: 'My Tickets', path: '/myPage?page=myTickets' },
     { name: 'Settings', path: '/myPage?page=settings' },
   ];
+
+  const [name, setName] = React.useState('. . .');
+  const [isClickedOnce, setIsClickedOnce] = React.useState(false);
+
+
+  React.useEffect(() => {
+    setName(currentUser?.name?.korean || '');
+  }, [currentUser]);
+
+  const handleChange = () => {
+    if (isClickedOnce) {
+      setName(currentUser?.name?.korean || '');
+    } else {
+      setName(currentUser?.name?.english || '');
+    }
+    setIsClickedOnce(!isClickedOnce);
+  }
   
   const drawer = (
-    <div className='mt-9 pl-10'>
+      <div className='mt-9 pl-16'>
       <Suspense fallback="loading...">
-        <h3 className="px-4 font-bold text-sm text-[#364656]">{getGreeting()}</h3>
-        <h3 className="px-4 mt-0.5 font-bold text-lg text-[#415263]">{currentUser?.name?.english}</h3>
-        <div className='w-full flex justify-end'>
-          <List className='mt-3 w-3/4'>
-            {menus.map((menu, index) => (
-              <ListItem key={menu.name} component="a" href={menu.path}>
-                <h1 className='font-semibold text-lg'>{menu.name}</h1>
-              </ListItem>
-            ))}
-          </List>
+        <div className='flex justify-end'>
+          <Switch onChange={handleChange}/>
         </div>
-      </Suspense>
-    </div>
+        <div className='flex justify-center'>
+          <Card className='ml-8 px-4 py-2'>
+            <h3 className="px-4 font-bold text-sm text-[#364656]">{getGreeting()}</h3>
+              <h3 className="px-4 mt-0.5 font-extrabold text-lg text-[#035FB7]">{name} <span className='text-sm text-[#364656]'>님</span></h3>
+          </Card>
+        </div>
+          <div className='w-full flex justify-end'>
+            <List className='mt-3 w-3/4 mr-2'>
+              {menus.map((menu, index) => (
+                <ListItem key={menu.name} component="a" href={menu.path} className='hover:bg-blue-gray-50'>
+                  <h1 className='font-semibold text-lg'>{menu.name}</h1>
+                </ListItem>
+              ))}
+            </List>
+          </div>
+        </Suspense>
+      </div>
+
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
