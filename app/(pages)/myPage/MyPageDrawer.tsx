@@ -6,8 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import Card from '@mui/material/Card';
-import Switch from '@mui/material/Switch';
 import { user } from '@/stores'
 import { useAtomValue } from 'jotai'
 import { useSearchParams } from 'next/navigation'
@@ -27,8 +25,6 @@ export default function MyPageDrawer(props: Props) {
 
   const userVal = useAtomValue(user)
   const currentUser = userVal;
-
- 
 
   const searchParams = useSearchParams()
   const page = searchParams.get('page')
@@ -73,7 +69,7 @@ export default function MyPageDrawer(props: Props) {
 
 
   React.useEffect(() => {
-    setName(currentUser?.name?.korean || '');
+    setName(currentUser?.name?.korean || currentUser?.name?.english || '');
   }, [currentUser]);
 
   const handleChange = () => {
@@ -88,20 +84,17 @@ export default function MyPageDrawer(props: Props) {
   const drawer = (
       <div className='mt-9 pl-16'>
       <Suspense fallback="loading...">
-        <div className='flex justify-end'>
-          <Switch onChange={handleChange}/>
-        </div>
         <div className='flex justify-center'>
-          <Card className='ml-8 px-4 py-2'>
+          <div className='ml-12 py-2'>
             <h3 className="px-4 font-bold text-sm text-[#364656]">{getGreeting()}</h3>
-              <h3 className="px-4 mt-0.5 font-extrabold text-lg text-[#035FB7]">{name} <span className='text-sm text-[#364656]'>님</span></h3>
-          </Card>
+            <h3 className="px-4 mt-0.5 font-extrabold text-lg text-[#035FB7]">{name} <span className='text-sm text-[#364656]'>님</span></h3>
+          </div>
         </div>
           <div className='w-full flex justify-end'>
             <List className='mt-3 w-3/4 mr-2'>
               {menus.map((menu, index) => (
                 <ListItem key={menu.name} component="a" href={menu.path} className='hover:bg-blue-gray-50'>
-                  <h1 className='font-semibold text-lg'>{menu.name}</h1>
+                  <h1 className='font-semibold text-lg text-center w-full'>{menu.name}</h1>
                 </ListItem>
               ))}
             </List>

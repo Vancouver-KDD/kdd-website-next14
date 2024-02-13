@@ -19,8 +19,8 @@ const MyTickets: React.FC<Props> = (props) => {
               If you wish to cancel your ticket, please click the 'Cancel' button, and the KDD team
               will review your request. You will receive a confirmation email shortly. If you have
               any questions or need assistance, please contact us at{' '}
-              <a className="text-royalBlue-600" href="mailto:partner@vancouverkdd.com">
-                admin@vancouverkdd.com
+              <a className="text-royalBlue-600" href="mailto:marketing@vancouverkdd.com">
+                marketing@vancouverkdd.com
               </a>
             </p>
           </div>

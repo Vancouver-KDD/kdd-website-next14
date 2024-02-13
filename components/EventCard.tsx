@@ -1,4 +1,4 @@
-import {DateTime} from 'luxon'
+import { DateTime } from 'luxon'
 import {getEventAnalytics} from '@/actions/firebase-action'
 import Button from '@/components/Button'
 import Image from 'next/image'
@@ -27,16 +27,10 @@ export default async function EventCard({event}: Props) {
   const ticketsLeft =
     event.quantity -
     ((eventAnalytics?.ticketsConfirmedCount ?? 0) + (eventAnalytics?.ticketsOnHoldCount ?? 0))
-  // console.log(convertAutolinksToLinks(event.description) ?? '')
-
+  
   return (
     <>
-      <button
-      // onClick={() => {
-      //   dialog?.showModal()
-      //   scrollToTopAnchor?.scrollIntoView()
-      // }}
-      >
+      <button>
         <div className="w-full rounded-md overflow-clip grid max-md:grid-cols-1 md:grid-cols-2 group">
           <div className="h-full md:max-h-80 overflow-hidden">
             <div className="relative h-full w-full">
