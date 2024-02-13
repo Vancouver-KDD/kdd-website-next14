@@ -230,8 +230,6 @@ const CheckoutForm: React.FC<{event: DB.Event; currentUser: DB.User}> = ({event,
             <div className="flex justify-end">
               <Button
                 type="submit"
-                disabled={isLoading}
-                loading={isLoading}
                 className="p-4 text-sm">
                 {isFree ? 'Reserve' : 'Continue to Payment'}
               </Button>

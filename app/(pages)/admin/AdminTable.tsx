@@ -24,19 +24,19 @@ interface AdminTableProps {
 
 const AdminTable: FC<AdminTableProps> = ({ activeTickets, cancelledTickets }) => {
 
-    function exportData(type: string) {
-        const fileName = 'KDD행사리스트.' + type
-        const table = ticketTable
-        const wb = XLSX.utils.table_to_book(table)
-        XLSX.writeFile(wb, fileName)
-    }
+    // function exportData(type: string) {
+    //     const fileName = 'KDD행사리스트.' + type
+    //     const table = ticketTable
+    //     const wb = XLSX.utils.table_to_book(table)
+    //     XLSX.writeFile(wb, fileName)
+    // }
     
   return (
     <div>
       <button
         className="hidden md:block absolute top-0 right-24 m-7 bg-amber-400/75 hover:bg-amber-400 text-white font-bold py-2 px-4 rounded-lg"
         onClick={() => {
-          exportData('csv');
+          // exportData('csv');
         }}
       >
         CSV

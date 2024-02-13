@@ -31,7 +31,7 @@ const MyTickets: React.FC<Props> = (props) => {
           <div className="p-4">
             <h1 className="text-xl font-semibold text-royalBlue-700">My KDD Ticket</h1>
           </div>
-          <div className="flex flex-col justify-center h-96 p-4 pb-6 rounded shadow-lg">
+          {/* <div className="flex flex-col justify-center h-96 p-4 pb-6 rounded shadow-lg">
             {isLoading ? (
               <p>Loading...</p>
             ) : reservedTicket && reservedTicket.status !== 'cancelled' ? (
@@ -51,7 +51,7 @@ const MyTickets: React.FC<Props> = (props) => {
                 <p className='text-xs'>현재 진행중인 <a href='/events' className='text-royalBlue-700 font-bold'>이벤트</a>를 보시겠어요?</p>
               </>
             )}
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
