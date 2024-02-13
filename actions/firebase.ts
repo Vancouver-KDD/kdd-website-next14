@@ -13,7 +13,6 @@ const app = apps[0]
       messagingSenderId: process.env.NEXT_PUBLIC_messagingSenderId,
       appId: process.env.NEXT_PUBLIC_appId,
     })
-
 const db = getFirestore(app)
 
 const firebaseAuth = getAuth(app)

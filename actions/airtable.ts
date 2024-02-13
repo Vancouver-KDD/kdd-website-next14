@@ -1,7 +1,7 @@
 import Airtable from 'airtable'
 Airtable.configure({apiKey: process.env.NEXT_PUBLIC_AIRTABLE_TOKEN})
 import type {Attachment} from 'airtable'
-import { DB } from '@/app'
+import {DB} from '@/app'
 
 const DEV = process.env.NODE_ENV === 'development'
 
@@ -75,7 +75,7 @@ export const getLatestEvents = async ({limit}: {limit: number}) => {
   const records = await base('Events')
     .select({
       pageSize: limit,
-      // filterByFormula: `{dev} = ${DEV ? '1' : '0'}`,
+      filterByFormula: `{dev} = ${DEV ? '1' : '0'}`,
       sort: [{field: 'date', direction: 'desc'}],
     })
     .firstPage()
