@@ -90,20 +90,21 @@ declare namespace DB {
   }
 
   interface Ticket {
+    id: string
     eventId: string
     eventName: string
     status?: 'free' | 'unpaid' | 'paid' | 'cancelled'
     price: string // '3.00'
     currency?: 'CAD'
-    createdAt: Timestamp
-    id: string
-    firstTime: string
+    userId: string
     name: string
     email: string
+    firstTime: string
     occupation: string
     work: string
     location: string
     message: string
+    createdAt: Timestamp
   }
 
   interface Email {
@@ -120,8 +121,14 @@ declare namespace DB {
   }
 
   interface User {
-    uid: string
-    isAdmin: boolean
+    uid?: string
+    isAdmin?: boolean
+    name: {
+      korean: string
+      english: string
+    }
     email: string
+    password: string
+    [key: string]: any
   }
 }
