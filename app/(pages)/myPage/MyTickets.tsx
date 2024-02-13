@@ -1,11 +1,13 @@
 import React from 'react'
 import Image from 'next/image'
 import MyTicketImage from './my-ticket.png'
+// import { fetchTicket } from '@/actions/airtable'
 
 type Props = {}
 
 const MyTickets: React.FC<Props> = (props) => {
   const isLoading = false
+  // const reservedTicket = fetchTicket(ticketId)
   const reservedTicket = null
   const event = null
 

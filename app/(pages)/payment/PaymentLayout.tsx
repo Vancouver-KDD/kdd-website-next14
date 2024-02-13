@@ -1,13 +1,13 @@
 'use client'
 import React, {useState, useEffect} from 'react'
 import {getEvent} from '@/actions/airtable'
-import EventDescription from './EventDescription'
-import CheckoutForm from './CheckoutForm'
+import EventDescription from '../checkout/[eventId]/EventDescription'
 import { DB } from '@/app'
 import { user } from '@/stores'
 import { useAtomValue } from 'jotai'
+import PaymentForm from './PaymentForm'
 
-const CheckoutLayout = () => {
+const PaymentLayout = () => {
   const [checkoutEvent, setCheckoutEvent] = useState<DB.Event>()
 
   useEffect(() => {
@@ -22,18 +22,16 @@ const CheckoutLayout = () => {
   const userVal = useAtomValue(user)
   const currentUser = userVal;
 
-  console.log('currentUser', currentUser)
-
   return (
     <div className="flex-col md:flex-row justify-between gap-5">
       <div style={{flex: 1}}>
         {checkoutEvent && <EventDescription event={checkoutEvent} />}
       </div>
       <div style={{flex: 1}}>
-        {checkoutEvent && currentUser && <CheckoutForm event={checkoutEvent} currentUser={currentUser} />}
+        {checkoutEvent && <PaymentForm />}
       </div>
     </div>
   )
 }
 
-export default CheckoutLayout
+export default PaymentLayout
