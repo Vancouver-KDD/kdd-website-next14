@@ -16,4 +16,3 @@ export const app =
 export const increment = admin.firestore.FieldValue.increment
 export const serverTimestamp = admin.firestore.FieldValue.serverTimestamp
 export const db = app.firestore()
-export const auth = app.auth()
