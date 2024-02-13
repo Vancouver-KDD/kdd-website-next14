@@ -18,7 +18,7 @@ const MyTickets: React.FC<Props> = (props) => {
           <Image className="w-[85%] h-[80%]" src={MyTicketImage} alt="my-ticket" />
           <div className="pl-2">
             <p className="text-gray-500 text-sm text-center">
-              If you wish to cancel your ticket, please click the 'Cancel' button, and the KDD team
+              If you wish to cancel your ticket, please click the Cancel button, and the KDD team
               will review your request. You will receive a confirmation email shortly. If you have
               any questions or need assistance, please contact us at{' '}
               <a className="text-royalBlue-600" href="mailto:marketing@vancouverkdd.com">
