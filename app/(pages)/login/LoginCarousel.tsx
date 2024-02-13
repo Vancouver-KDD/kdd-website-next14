@@ -17,9 +17,9 @@ function Photos() {
     }, []);
 
     return (
-        <Carousel autoplay autoplayDelay={2500} loop className="rounded-xl" placeholder={<div>Loading...</div>}>
+        <Carousel autoplay autoplayDelay={2500} loop className="relative rounded-xl" placeholder={<div>Loading...</div>}>
             {recentPhotos.map((photo, index) => (
-                <Image key={index} fill src={photo.url} alt={`photo-${index}`} className="w-96" />
+                <Image key={index} fill src={photo.url} alt={`photo-${index}`} className="w-96 object-cover" />
             ))}
         </Carousel>
     )
